@@ -157,16 +157,16 @@ function! clever_f#_mark_direct(forward, count) abort
     let char_count = {}
     let matches = []
     if a:forward 
-        let line=split(line[c:], '\zs')
-        let i=c
+        let line = split(line[c:], '\zs')
+        let i = c
     else
-        let line=reverse(split(line[0:c-1], '\zs'))
-        let i=c-len(line[0]) " skip char under cursor
-        let line=line[1:]
+        let line = reverse(split(line[0 : c-1], '\zs'))
+        let i = c - len(line[0]) " skip char under cursor
+        let line = line[1:]
     endif
     for ch in line
         if !a:forward 
-            let i = i - len(ch)
+            let i -= len(ch)
         endif
         let ch_lower = tolower(ch)
 
@@ -184,7 +184,7 @@ function! clever_f#_mark_direct(forward, count) abort
             call add(matches, m)
         endif
         if a:forward 
-            let i = i + len(ch)
+            let i += len(ch)
         endif
     endfor
     return matches
